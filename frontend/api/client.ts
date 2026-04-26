@@ -6,12 +6,12 @@
  * import the helpers from there. Each helper throws on non-2xx so you can
  * catch in the calling component.
  *
- * The base URL is read from `import.meta.env.VITE_API_URL`. If that env var
+ * The base URL is read from `import.meta.env.VITE_API_BASE_URL`. If that env var
  * isn't set, calls fall back to `http://localhost:8000` so `npm run dev`
  * just works while you're iterating with the local backend.
  */
 
-const RAW_BASE = (import.meta as any).env?.VITE_API_URL ?? "http://localhost:8000";
+const RAW_BASE = (import.meta as any).env?.VITE_API_BASE_URL ?? "https://sazdk-caregrid-ai.hf.space";
 const API_BASE = String(RAW_BASE).replace(/\/+$/, "");
 
 // ---------------------------------------------------------------------------
