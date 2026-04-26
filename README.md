@@ -81,24 +81,25 @@ Space.
 
 ### 2. Frontend → Lovable → Vercel
 
-The Lovable prompt + a working API client are in
-[`frontend/`](frontend/). Workflow:
+The actual generated frontend lives at
+[`frontend/care-connect-ai-main/`](frontend/care-connect-ai-main/) — a
+React + Vite + Tailwind + shadcn/ui app produced from the prompt at
+[`docs/LOVABLE_PROMPT.md`](docs/LOVABLE_PROMPT.md). The prompt itself is
+preserved as an archival artifact.
 
-1. Open [lovable.dev](https://lovable.dev) and paste
-   `frontend/LOVABLE_PROMPT.md`.
-2. When Lovable asks for the backend URL, give it your HF Space URL.
-3. Once the project is generated, click **Connect to GitHub** and let
-   Lovable push to a new repo (or paste the generated code on top of
-   `frontend/`).
-4. Import that repo into Vercel — `vercel.json` is already in
-   `frontend/`. Set `VITE_API_URL` (or `NEXT_PUBLIC_API_URL`,
-   depending on which framework Lovable picked) to your HF Space URL
-   in Vercel → Project Settings → Environment Variables.
-5. Deploy. The Vercel domain you receive is what you put back in
-   `CAREGRID_CORS_ORIGINS` on the HF Space.
+To re-deploy or fork:
 
-That's the loop. See [`frontend/LOVABLE_PROMPT.md`](frontend/LOVABLE_PROMPT.md)
-for the full prompt and the API contract Lovable will be coding against.
+1. Push the repo to GitHub (already done if you cloned this).
+2. On [vercel.com/new](https://vercel.com/new) import the repo.
+3. Set **Root Directory** to `frontend/care-connect-ai-main`.
+4. Add env var `VITE_API_URL=https://<your-space>.hf.space` for
+   Production, Preview, and Development.
+5. Deploy. Take the Vercel domain and add it to the HF Space's
+   `CAREGRID_CORS_ORIGINS` env var, then restart the Space.
+6. Hit `/health` from the deployed page once to warm up the FAISS index.
+
+See [`docs/LOVABLE_PROMPT.md`](docs/LOVABLE_PROMPT.md) for the full
+prompt and the API contract Lovable was coding against.
 
 ## Repo layout
 

@@ -1,5 +1,9 @@
 # Lovable Prompt — CareGrid AI Frontend
 
+> Archival reference. This is the prompt that produced the app at
+> `frontend/care-connect-ai-main/`. Kept here so judges (and future
+> contributors) can see the intent the UI was built against.
+
 Paste **everything inside the fenced block below** into Lovable as your
 project brief. Lovable will scaffold a React + Vite + Tailwind app that
 talks to the FastAPI backend already deployed on Hugging Face Spaces.
@@ -7,7 +11,7 @@ talks to the FastAPI backend already deployed on Hugging Face Spaces.
 After Lovable builds it, set:
 
 ```
-VITE_API_BASE_URL = https://<your-space>.hf.space
+VITE_API_URL = https://<your-space>.hf.space
 ```
 
 in Lovable's **Environment Variables** panel, then connect the project
@@ -22,10 +26,10 @@ Hack-Nation challenge "Serving a Nation: Building Agentic Healthcare Maps
 for 1.4 Billion Lives."
 
 The app talks to a FastAPI backend at the URL provided in the env var
-`VITE_API_BASE_URL`. The backend hosts ~10,000 Indian hospital / clinic /
+`VITE_API_URL`. The backend hosts ~10,000 Indian hospital / clinic /
 dentist / pharmacy records from the Virtue Foundation Hackathon dataset.
 
-Read these constants from `import.meta.env.VITE_API_BASE_URL` and never
+Read these constants from `import.meta.env.VITE_API_URL` and never
 hard-code the backend URL.
 
 ## Pages / Layout
@@ -38,7 +42,7 @@ A single-page experience with three top-level tabs in this order:
 
 A persistent header shows the app name "CareGrid AI", a subtitle "Agentic
 Healthcare Intelligence for India", and a small badge fetched from
-`GET /health` showing dataset row count + active embedding model.
+`GET /health` showing `dataset_rows` and `embedding_model`.
 
 ## Tab 1 — Search
 
@@ -51,7 +55,7 @@ Healthcare Intelligence for India", and a small badge fetched from
   the search box and submits.
 - A "Try urgent mode" toggle that, when on, prepends "nearest" to the
   query before sending it (the backend re-weights for proximity).
-- POST the query to `${VITE_API_BASE_URL}/search` with body
+- POST the query to `${VITE_API_URL}/search` with body
   `{ "query": "<text>", "top_k": 10 }`.
 
 ### Result rendering
@@ -87,8 +91,8 @@ location line.
 
 ## Tab 2 — Crisis Map
 
-- On mount, GET `${VITE_API_BASE_URL}/stats/deserts?top_n=36` and
-  `${VITE_API_BASE_URL}/stats/specialty-gaps`.
+- On mount, GET `${VITE_API_URL}/stats/deserts?top_n=36` and
+  `${VITE_API_URL}/stats/specialty-gaps`.
 - Render an Indian states choropleth using react-simple-maps
   ("admin1 India" topojson available at
   https://cdn.jsdelivr.net/gh/datameet/maps/States/Admin2.geojson —
@@ -103,17 +107,17 @@ location line.
 
 ## Tab 3 — Audit
 
-- On mount, GET `${VITE_API_BASE_URL}/stats/contradictions?limit=50`.
+- On mount, GET `${VITE_API_URL}/stats/contradictions?limit=50`.
 - Render a table with columns:
   Hospital | State | Trust | Rule | Evidence (citation)
 - Style the Evidence column as a muted blockquote.
 - Add a search box to filter rows client-side by hospital_name or state.
 - Clicking a row opens a slide-over panel that calls
-  `${VITE_API_BASE_URL}/hospitals/{hospital_id}` and renders the full record:
+  `${VITE_API_URL}/hospitals/{hospital_id}` and renders the full record:
   - Trust score (large)
   - Trust breakdown (rule + delta + evidence) as cards
-  - Specialty + equipment tags as chips
-  - Raw notes / description in a `<pre>` block
+  - `specialty_tags` and `equipment_tags` as chips
+  - Raw `notes` in a `<pre>` block
 
 ## Visual style
 
@@ -161,6 +165,7 @@ type QueryUnderstood = {
   raw_query: string;
 };
 
+// /stats/deserts → { states: StateDesert[] }
 type StateDesert = {
   state: string;
   facility_count: number;
@@ -171,6 +176,14 @@ type StateDesert = {
   desert_score: number;
 };
 
+// /stats/specialty-gaps → { specialties: string[], states: string[], cells: SpecialtyGapCell[], summary: ... }
+type SpecialtyGapCell = {
+  specialty: string;
+  state: string;
+  facility_count: number;
+};
+
+// /stats/contradictions → { flagged: Contradiction[] }
 type Contradiction = {
   hospital_id: number;
   hospital_name: string;
@@ -193,7 +206,7 @@ type Contradiction = {
 - `src/components/TrustBadge.tsx`, `TrustBreakdown.tsx`,
   `ScoreComponents.tsx`, `ChainOfThought.tsx`.
 - `vite.config.ts` configured for Vercel.
-- `.env.example` with `VITE_API_BASE_URL=https://your-space.hf.space`.
+- `.env.example` with `VITE_API_URL=https://your-space.hf.space`.
 - `vercel.json` setting `framework: "vite"` and the SPA rewrite.
 
 ## Out of scope
@@ -210,11 +223,11 @@ and a great first impression over feature breadth.
 
 ## What you'll have to do after Lovable finishes
 
-1. Click **Publish to GitHub** in Lovable.
-2. Import that GitHub repo into Vercel.
+1. Click **Publish to GitHub** in Lovable (or download the zip and drop
+   it into `frontend/care-connect-ai-main/` like we did).
+2. Import the GitHub repo into Vercel.
 3. In Vercel → Project → Settings → Environment Variables, add
-   `VITE_API_BASE_URL` (or whatever name Lovable used) pointing at your
-   Hugging Face Space URL.
+   `VITE_API_URL` pointing at your Hugging Face Space URL.
 4. Take the Vercel domain, paste it into the Hugging Face Space's
    `CAREGRID_CORS_ORIGINS` env var, and re-deploy the Space.
 5. Run `/health` from the Vercel page once to warm up the FAISS index.

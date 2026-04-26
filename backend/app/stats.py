@@ -74,28 +74,72 @@ def state_deserts(df: pd.DataFrame, *, top_n: int = 36) -> list[dict[str, Any]]:
     return rows[:top_n]
 
 
-def specialty_gaps(df: pd.DataFrame) -> list[dict[str, Any]]:
-    """For each major specialty, show how many facilities exist and in which states."""
-    if df.empty:
-        return []
+def specialty_gaps(df: pd.DataFrame, *, top_states_n: int = 20) -> dict[str, Any]:
+    """Return a state x specialty matrix the dashboard can render as a heatmap.
 
-    out: list[dict[str, Any]] = []
-    for specialty in sorted(MAJOR_SPECIALTIES):
+    Shape:
+        {
+            "specialties": ["cardiology", "dialysis", ...],
+            "states": ["Maharashtra", "Uttar Pradesh", ...],   # top-N states by total facility count
+            "cells": [{"specialty": "icu", "state": "Bihar", "facility_count": 23}, ...],
+            "summary": [
+                {"specialty": "icu", "total_facilities": 324, "states_covered": 29, "top_states": [...]},
+                ...
+            ],
+        }
+
+    The optional ``summary`` list preserves the previous shape for any
+    consumer that wants per-specialty headline numbers.
+    """
+    empty: dict[str, Any] = {"specialties": [], "states": [], "cells": [], "summary": []}
+    if df.empty:
+        return empty
+
+    specialties = sorted(MAJOR_SPECIALTIES)
+
+    per_specialty_state: dict[str, dict[str, int]] = {sp: {} for sp in specialties}
+    state_totals: dict[str, int] = {}
+    summary: list[dict[str, Any]] = []
+
+    for specialty in specialties:
         mask = df["specialty_tags_full"].fillna("").map(lambda s, sp=specialty: sp in tags_to_set(s))
         subset = df[mask]
-        per_state: dict[str, int] = {}
+        per_state = per_specialty_state[specialty]
         for _, row in subset.iterrows():
             state = (normalize_state_name(row.get("state")) or row.get("state") or "").strip().title()
-            if not state:
+            if not state or state.lower() not in _VALID_STATES_LC:
                 continue
             per_state[state] = per_state.get(state, 0) + 1
-        out.append({
+            state_totals[state] = state_totals.get(state, 0) + 1
+        summary.append({
             "specialty": specialty,
             "total_facilities": int(len(subset)),
             "states_covered": int(len(per_state)),
             "top_states": sorted(per_state.items(), key=lambda kv: -kv[1])[:5],
         })
-    return out
+
+    states = [s for s, _ in sorted(state_totals.items(), key=lambda kv: -kv[1])[:top_states_n]]
+    states_sorted = sorted(states)
+
+    cells: list[dict[str, Any]] = []
+    for specialty in specialties:
+        per_state = per_specialty_state[specialty]
+        for state in states_sorted:
+            count = per_state.get(state, 0)
+            if count == 0:
+                continue
+            cells.append({
+                "specialty": specialty,
+                "state": state,
+                "facility_count": count,
+            })
+
+    return {
+        "specialties": specialties,
+        "states": states_sorted,
+        "cells": cells,
+        "summary": summary,
+    }
 
 
 def flagged_contradictions(df: pd.DataFrame, *, limit: int = 50) -> list[dict[str, Any]]:

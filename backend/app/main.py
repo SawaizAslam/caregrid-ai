@@ -170,9 +170,13 @@ def stats_deserts(top_n: int = 36):
 
 @app.get("/stats/specialty-gaps")
 def stats_specialty_gaps():
-    """For every major specialty, count facilities and rank states by coverage."""
+    """State x specialty matrix powering the dashboard heatmap.
+
+    Returns specialties, states, cells, and a summary list - see
+    backend.app.stats.specialty_gaps for the schema.
+    """
     engine = _engine(app)
-    return {"specialties": specialty_gaps(engine.df)}
+    return specialty_gaps(engine.df)
 
 
 @app.get("/stats/contradictions")

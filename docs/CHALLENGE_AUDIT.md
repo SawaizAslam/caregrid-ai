@@ -162,7 +162,8 @@ Lovable frontend on Vercel     ← search box, map, trust card with citations
 | Frontend | Vercel              | Lovable export in `frontend/`, `vercel.json`   |
 | CORS     | Env-configurable    | `CAREGRID_CORS_ORIGINS=https://your-app.vercel.app` |
 
-See `frontend/LOVABLE_PROMPT.md` for the prompt to feed into Lovable, and
+See `docs/LOVABLE_PROMPT.md` for the prompt that produced
+`frontend/care-connect-ai-main/`, and
 `backend/README.md` for the HF Spaces deploy section.
 
 ---
