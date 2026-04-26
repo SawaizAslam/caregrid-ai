@@ -26,6 +26,8 @@ data/index/
 
 # Binary docs (HF Spaces rejects raw binaries; use Xet/LFS for these).
 *.pdf
+# Bun's binary lockfile is rejected by HF Spaces. Stick to package-lock.json.
+*.lockb
 
 # NOTE: data/hospitals.* used to be ignored. We commit it now so the
 # Hugging Face Space Docker build has the dataset on hand at COPY time.
