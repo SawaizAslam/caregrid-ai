@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project
+data/index/
+*.pkl
+*.faiss
+*.index
+
+# Binary docs (HF Spaces rejects raw binaries; use Xet/LFS for these).
+*.pdf
+
+# NOTE: data/hospitals.* used to be ignored. We commit it now so the
+# Hugging Face Space Docker build has the dataset on hand at COPY time.
+# If you need to swap in a different dataset, drop it at data/hospitals.csv
+# (or .xlsx) and rebuild via `python -m backend.scripts.build_index`.
+
+# Models cache
+.cache/

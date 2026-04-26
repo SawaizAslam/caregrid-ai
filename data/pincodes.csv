@@ -1,0 +1,87 @@
+pin_code,state,district,latitude,longitude
+110001,Delhi,New Delhi,28.6139,77.2090
+110020,Delhi,South Delhi,28.5494,77.2710
+122001,Haryana,Gurugram,28.4595,77.0266
+121001,Haryana,Faridabad,28.4089,77.3178
+160001,Chandigarh,Chandigarh,30.7333,76.7794
+141001,Punjab,Ludhiana,30.9010,75.8573
+143001,Punjab,Amritsar,31.6340,74.8723
+144001,Punjab,Jalandhar,31.3260,75.5762
+171001,Himachal Pradesh,Shimla,31.1048,77.1734
+180001,Jammu and Kashmir,Jammu,32.7266,74.8570
+190001,Jammu and Kashmir,Srinagar,34.0837,74.7973
+194101,Ladakh,Leh,34.1526,77.5770
+201301,Uttar Pradesh,Noida,28.5355,77.3910
+226001,Uttar Pradesh,Lucknow,26.8467,80.9462
+208001,Uttar Pradesh,Kanpur,26.4499,80.3319
+221001,Uttar Pradesh,Varanasi,25.3176,82.9739
+282001,Uttar Pradesh,Agra,27.1767,78.0081
+248001,Uttarakhand,Dehradun,30.3165,78.0322
+263001,Uttarakhand,Nainital,29.3919,79.4542
+302001,Rajasthan,Jaipur,26.9124,75.7873
+342001,Rajasthan,Jodhpur,26.2389,73.0243
+313001,Rajasthan,Udaipur,24.5854,73.7125
+324001,Rajasthan,Kota,25.2138,75.8648
+380001,Gujarat,Ahmedabad,23.0225,72.5714
+390001,Gujarat,Vadodara,22.3072,73.1812
+395001,Gujarat,Surat,21.1702,72.8311
+360001,Gujarat,Rajkot,22.3039,70.8022
+400001,Maharashtra,Mumbai,19.0760,72.8777
+411001,Maharashtra,Pune,18.5204,73.8567
+440001,Maharashtra,Nagpur,21.1458,79.0882
+431001,Maharashtra,Aurangabad,19.8762,75.3433
+422001,Maharashtra,Nashik,19.9975,73.7898
+403001,Goa,Panaji,15.4909,73.8278
+452001,Madhya Pradesh,Indore,22.7196,75.8577
+462001,Madhya Pradesh,Bhopal,23.2599,77.4126
+482001,Madhya Pradesh,Jabalpur,23.1815,79.9864
+474001,Madhya Pradesh,Gwalior,26.2183,78.1828
+492001,Chhattisgarh,Raipur,21.2514,81.6296
+495001,Chhattisgarh,Bilaspur,22.0797,82.1409
+800001,Bihar,Patna,25.5941,85.1376
+823001,Bihar,Gaya,24.7914,85.0002
+842001,Bihar,Muzaffarpur,26.1209,85.3647
+854301,Bihar,Purnia,25.7771,87.4753
+834001,Jharkhand,Ranchi,23.3441,85.3096
+831001,Jharkhand,Jamshedpur,22.8046,86.2029
+826001,Jharkhand,Dhanbad,23.7957,86.4304
+700001,West Bengal,Kolkata,22.5726,88.3639
+711101,West Bengal,Howrah,22.5958,88.2636
+734001,West Bengal,Darjeeling,27.0410,88.2663
+713101,West Bengal,Durgapur,23.5204,87.3119
+737101,Sikkim,Gangtok,27.3389,88.6065
+781001,Assam,Guwahati,26.1445,91.7362
+786001,Assam,Dibrugarh,27.4728,94.9120
+785001,Assam,Jorhat,26.7509,94.2037
+790001,Arunachal Pradesh,Itanagar,27.0844,93.6053
+791001,Arunachal Pradesh,Tawang,27.5859,91.8594
+793001,Meghalaya,Shillong,25.5788,91.8933
+795001,Manipur,Imphal,24.8170,93.9368
+796001,Mizoram,Aizawl,23.7271,92.7176
+797001,Nagaland,Kohima,25.6747,94.1086
+799001,Tripura,Agartala,23.8315,91.2868
+751001,Odisha,Bhubaneswar,20.2961,85.8245
+753001,Odisha,Cuttack,20.4625,85.8830
+769001,Odisha,Rourkela,22.2604,84.8536
+500001,Telangana,Hyderabad,17.3850,78.4867
+506001,Telangana,Warangal,17.9689,79.5941
+518001,Andhra Pradesh,Kurnool,15.8281,78.0373
+520001,Andhra Pradesh,Vijayawada,16.5062,80.6480
+530001,Andhra Pradesh,Visakhapatnam,17.6868,83.2185
+560001,Karnataka,Bengaluru,12.9716,77.5946
+570001,Karnataka,Mysuru,12.2958,76.6394
+580001,Karnataka,Hubli,15.3647,75.1240
+590001,Karnataka,Belgaum,15.8497,74.4977
+575001,Karnataka,Mangaluru,12.9141,74.8560
+600001,Tamil Nadu,Chennai,13.0827,80.2707
+620001,Tamil Nadu,Tiruchirappalli,10.7905,78.7047
+625001,Tamil Nadu,Madurai,9.9252,78.1198
+641001,Tamil Nadu,Coimbatore,11.0168,76.9558
+605001,Puducherry,Puducherry,11.9416,79.8083
+682001,Kerala,Kochi,9.9312,76.2673
+695001,Kerala,Thiruvananthapuram,8.5241,76.9366
+673001,Kerala,Kozhikode,11.2588,75.7804
+680001,Kerala,Thrissur,10.5276,76.2144
+682555,Lakshadweep,Kavaratti,10.5667,72.6417
+744101,Andaman and Nicobar Islands,Port Blair,11.6234,92.7265
+396001,Dadra and Nagar Haveli and Daman and Diu,Daman,20.3974,72.8328
