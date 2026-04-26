@@ -1,4 +1,4 @@
-# Python
+# --- Python ----------------------------------------------------------
 __pycache__/
 *.py[cod]
 *.pyo
@@ -9,30 +9,45 @@ env/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+htmlcov/
 
-# IDE
+# --- Node / frontend (frontend has its own .gitignore too) -----------
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- IDE / OS --------------------------------------------------------
 .vscode/
 .idea/
-
-# OS
 .DS_Store
 Thumbs.db
 
-# Project
+# --- Local environment files ----------------------------------------
+.env
+.env.local
+.env.*.local
+
+# --- Project artifacts (regenerable from data/hospitals.csv) --------
 data/index/
 *.pkl
 *.faiss
 *.index
 
-# Binary docs (HF Spaces rejects raw binaries; use Xet/LFS for these).
+# --- Binary docs (HF Spaces rejects raw binaries; use Xet/LFS) ------
 *.pdf
 # Bun's binary lockfile is rejected by HF Spaces. Stick to package-lock.json.
 *.lockb
 
-# NOTE: data/hospitals.* used to be ignored. We commit it now so the
-# Hugging Face Space Docker build has the dataset on hand at COPY time.
-# If you need to swap in a different dataset, drop it at data/hospitals.csv
-# (or .xlsx) and rebuild via `python -m backend.scripts.build_index`.
+# Note: data/hospitals.csv is intentionally NOT ignored. The Hugging
+# Face Space build needs the dataset present at COPY time. To swap in
+# a different dataset, drop it at data/hospitals.csv (or .xlsx) and
+# rebuild via `python -m backend.scripts.build_index`.
 
-# Models cache
+# --- Model caches ---------------------------------------------------
 .cache/

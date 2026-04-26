@@ -111,18 +111,19 @@ The root `README.md` already has the YAML frontmatter HF needs:
 ```yaml
 ---
 title: CareGrid AI Backend
-emoji: 🏥
 colorFrom: indigo
 colorTo: red
 sdk: docker
 app_port: 7860
 pinned: false
 license: mit
-short_description: Hybrid search + trust scoring over 10k Indian hospital records.
+short_description: Hybrid search and trust scoring over 10k Indian hospital records.
 ---
 ```
 
-Don't remove it.
+Don't remove it. (HF Spaces accepts an optional `emoji:` field as a
+single-character icon; we omit it intentionally to keep the README
+emoji-free. Add it back if you want a custom Space card icon.)
 
 ---
 
